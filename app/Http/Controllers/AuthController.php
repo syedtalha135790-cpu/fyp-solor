@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Crypt;
-use Illuminate\Validation\ValidationException;
-
 use App\Models\User;
 use App\Mail\VerifyUser;
 
@@ -32,7 +30,7 @@ class AuthController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
 
-        // ✅ Create user & store in variable
+        // Create user
         $user = User::create([
             'name'        => $request->name,
             'email'       => $request->email,
@@ -40,11 +38,11 @@ class AuthController extends Controller
             'is_verified' => false,
         ]);
 
-        // ✅ Email verification link
+        // Create verification link
         $encryptedEmail = Crypt::encrypt($user->email);
         $verifyLink = url('/verify-user/' . $encryptedEmail);
 
-        // ✅ Send verification email
+        // Send verification email
         Mail::to($user->email)->send(new VerifyUser($verifyLink));
 
         return redirect()->route('user.login')
@@ -53,13 +51,11 @@ class AuthController extends Controller
 
     /* ================= Login ================= */
 
-    // Login form
     public function loginForm()
     {
         return view('frontend.login');
     }
 
-    // Login submit
     public function login(Request $request)
     {
         $request->validate([
@@ -69,22 +65,18 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        // ❌ Email not found
         if (!$user) {
             return back()->with('error', 'Email not found');
         }
 
-        // ❌ Password incorrect
         if (!Hash::check($request->password, $user->password)) {
             return back()->with('error', 'Invalid password');
         }
 
-        // ❌ Email not verified
         if (!$user->is_verified) {
             return back()->with('error', 'Please verify your email first.');
         }
 
-        // ✅ Store session
         Session::put('user_id', $user->id);
         Session::put('user_name', $user->name);
         Session::put('user_email', $user->email);
@@ -133,6 +125,7 @@ class AuthController extends Controller
                 ->with('success', 'Email verified successfully. You can now log in.');
 
         } catch (\Exception $e) {
+
             return redirect()->route('user.register')
                 ->with('error', 'Invalid or expired verification link.');
         }

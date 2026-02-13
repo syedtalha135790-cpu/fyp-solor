@@ -1,12 +1,9 @@
-{{-- Main Slider Section with Better Performance --}}
 <x-header/>
 <section class="main-slider">
     <div class="rev_slider_wrapper fullwidthbanner-container" id="rev_slider_one_wrapper" data-source="gallery">
         <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
             <ul>
-                {{-- Slide 1 - Using config for dynamic content --}}
                 <li data-index="rs-1" data-transition="zoomout">
-                    {{-- Lazy loading image with proper dimensions --}}
                     <img
                         src="{{ asset('frontend/assets/images/main-slider/1.jpg') }}"
                         alt="{{ config('app.slider_alt', 'Solar Energy System') }}"
@@ -946,37 +943,30 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 }
 </style>
-
-{{-- Newsletter Subscription --}}
-<section class="newsletter-section bg-light py-5">
-    <div class="auto-container">
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <h3 class="mb-3">{{ __('Stay Updated with Solar News') }}</h3>
-                <p class="mb-0">{{ __('Subscribe to our newsletter for the latest updates on solar technology and promotions.') }}</p>
+<!-- Quick Stats -->
+<section class="stats-section py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3">
+                <h3 class="text-primary">20K+</h3>
+                <p>Systems Installed</p>
             </div>
-            <div class="col-lg-6">
-                <form action="{{ route('newsletter.subscribe') }}" method="POST" class="newsletter-form">
-                    @csrf
-                    <div class="input-group">
-                        <input type="email"
-                               name="email"
-                               class="form-control"
-                               placeholder="{{ __('Enter your email') }}"
-                               required
-                               aria-label="{{ __('Email for newsletter subscription') }}">
-                        <button class="btn btn-primary" type="submit">
-                            {{ __('Subscribe') }}
-                        </button>
-                    </div>
-                    @error('email')
-                        <div class="text-danger mt-2">{{ $message }}</div>
-                    @enderror
-                </form>
+            <div class="col-md-3">
+                <h3 class="text-success">$677K</h3>
+                <p>Client Savings</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="text-warning">47K+</h3>
+                <p>Happy Families</p>
+            </div>
+            <div class="col-md-3">
+                <h3 class="text-info">15+</h3>
+                <p>Years Experience</p>
             </div>
         </div>
     </div>
 </section>
+
 
 {{-- Clients Section with Optimized Images --}}
 <section class="clients-section">

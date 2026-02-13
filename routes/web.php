@@ -65,7 +65,7 @@ Route::get('/dashboard', [AuthController::class, 'dashboard'])
 | Email Verification
 |--------------------------------------------------------------------------
 */
-Route::get('/verify-user/{email}', [AuthController::class, 'verifyUser'])->name('verify.user');
+Route::get('/verify-user/{email}', [AuthController::class, 'verifyUser']);
 
 
 /*
