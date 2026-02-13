@@ -7,6 +7,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\SolarEstimatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,15 @@ Route::get('/service/{slug}', [ServicesController::class, 'detail'])
 */
 Route::get('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
+
+/*
+|--------------------------------------------------------------------------
+| Solar Estimator
+|--------------------------------------------------------------------------
+*/
+Route::get('/solar-estimator', [SolarEstimatorController::class, 'show'])->name('solar-estimator');
+Route::post('/solar-estimator/submit', [SolarEstimatorController::class, 'store'])->name('solar-estimator.submit');
+Route::get('/solar-estimator/success/{id}', [SolarEstimatorController::class, 'success'])->name('solar-estimator-success');
 
 /*
 |--------------------------------------------------------------------------

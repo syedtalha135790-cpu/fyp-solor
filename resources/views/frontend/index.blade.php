@@ -1,9 +1,12 @@
+{{-- Main Slider Section with Better Performance --}}
 <x-header/>
 <section class="main-slider">
     <div class="rev_slider_wrapper fullwidthbanner-container" id="rev_slider_one_wrapper" data-source="gallery">
         <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
             <ul>
+                {{-- Slide 1 - Using config for dynamic content --}}
                 <li data-index="rs-1" data-transition="zoomout">
+                    {{-- Lazy loading image with proper dimensions --}}
                     <img
                         src="{{ asset('frontend/assets/images/main-slider/1.jpg') }}"
                         alt="{{ config('app.slider_alt', 'Solar Energy System') }}"
@@ -35,72 +38,49 @@
                         </span>
                     </div>
 
-                    <div class="tp-caption"
-                         data-paddingbottom="[0,0,0,0]"
-                         data-paddingleft="[15,15,15,15]"
-                         data-paddingright="[15,15,15,15]"
-                         data-paddingtop="[0,0,0,0]"
-                         data-responsive_offset="on"
-                         data-type="text"
-                         data-height="none"
-                         data-width="['950','750','750','480']"
-                         data-whitespace="normal"
-                         data-hoffset="['0','0','0','0']"
-                         data-voffset="['-45','-50','-50','-100']"
-                         data-x="['left','left','left','left']"
-                         data-y="['middle','middle','middle','middle']"
-                         data-textalign="['top','top','top','top']"
-                         data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <h1>{{ __('Best solar') }} <br>{{ __('energy System') }}</h1>
-                    </div>
+        <!-- Title -->
+        <h1 class="hero-title">
+            {{ __('Transform Your Energy Future') }}<br>
+            {{ __('With Solar Power') }}
+        </h1>
 
-                    <div class="tp-caption"
-                         data-paddingbottom="[0,0,0,0]"
-                         data-paddingleft="[15,15,15,15]"
-                         data-paddingright="[0,0,0,0]"
-                         data-paddingtop="[0,0,0,0]"
-                         data-responsive_offset="on"
-                         data-type="text"
-                         data-height="none"
-                         data-width="['750','750','750','450']"
-                         data-whitespace="normal"
-                         data-hoffset="['0','0','0','0']"
-                         data-voffset="['110','90','90','10']"
-                         data-x="['left','left','left','left']"
-                         data-y="['middle','middle','middle','middle']"
-                         data-textalign="['top','top','top','top']"
-                         data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <div class="text">
-                            {{ __('A leading voice in low-income solar policy and the nation\'s largest nonprofit solar installer, serving families throughout world') }}
-                        </div>
-                    </div>
+        <!-- Description -->
+        <p class="hero-description">
+            {{ __('Leading provider of high-quality solar energy solutions for residential and commercial properties. Save money, reduce carbon footprint, and enjoy reliable clean energy.') }}
+        </p>
 
-                    <div class="tp-caption"
-                         data-paddingbottom="[0,0,0,0]"
-                         data-paddingleft="[15,15,15,15]"
-                         data-paddingright="[15,15,15,15]"
-                         data-paddingtop="[0,0,0,0]"
-                         data-responsive_offset="on"
-                         data-type="text"
-                         data-height="none"
-                         data-width="['700','750','700','450']"
-                         data-whitespace="normal"
-                         data-hoffset="['0','0','0','0']"
-                         data-voffset="['210','185','200','120']"
-                         data-x="['left','left','left','left']"
-                         data-y="['middle','middle','middle','middle']"
-                         data-textalign="['top','top','top','top']"
-                         data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <a href="{{ route('services') }}" class="theme-btn btn-style-one" aria-label="{{ __('View Our Services') }}">
-                            <span class="btn-title">
-                                {{ __('Our Services') }}
-                                <i class="icon icon-sm-arrow"></i>
-                            </span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
+        <!-- Call-to-Action Buttons -->
+        <div class="hero-buttons">
+            <a href="{{ route('solar-estimator') }}" class="btn-primary-hero">
+                <i class="fas fa-bolt"></i>
+                {{ __('Get Free Estimate') }}
+            </a>
+            <a href="{{ route('services') }}" class="btn-secondary-hero">
+                <i class="fas fa-arrow-right"></i>
+                {{ __('Explore Services') }}
+            </a>
         </div>
+
+        <!-- Statistics -->
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">{{ __('Projects Completed') }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">25K+</span>
+                <span class="stat-label">{{ __('Happy Customers') }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10M+</span>
+                <span class="stat-label">{{ __('kWh Generated') }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
     </div>
 </section>
 
