@@ -1,109 +1,276 @@
-{{-- Main Slider Section with Better Performance --}}
+{{-- Professional Hero Section with Lightweight Images --}}
 <x-header/>
-<section class="main-slider">
-    <div class="rev_slider_wrapper fullwidthbanner-container" id="rev_slider_one_wrapper" data-source="gallery">
-        <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">
-            <ul>
-                {{-- Slide 1 - Using config for dynamic content --}}
-                <li data-index="rs-1" data-transition="zoomout">
-                    {{-- Lazy loading image with proper dimensions --}}
-                    <img
-                        src="{{ asset('frontend/assets/images/main-slider/1.jpg') }}"
-                        alt="{{ config('app.slider_alt', 'Solar Energy System') }}"
-                        class="rev-slidebg"
-                        width="1920"
-                        height="1080"
-                        loading="lazy"
-                    >
+<style>
+    .hero-section {
+        position: relative;
+        height: 90vh;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    }
 
-                    <div class="tp-caption"
-                         data-paddingbottom="[15,15,15,15]"
-                         data-paddingleft="[15,15,15,15]"
-                         data-paddingright="[0,0,0,0]"
-                         data-paddingtop="[10,10,10,10]"
-                         data-responsive_offset="on"
-                         data-type="text"
-                         data-height="none"
-                         data-width="['750','750','750','750']"
-                         data-whitespace="normal"
-                         data-hoffset="['0','0','0','0']"
-                         data-voffset="['-200','-190','-170','-200']"
-                         data-x="['left','left','left','left']"
-                         data-y="['middle','middle','middle','middle']"
-                         data-textalign="['top','top','top','top']"
-                         data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <span class="sub-title">
-                            <i class="icon flaticon-bulb"></i>
-                            <span>{{ __('Best Energy Solutions') }}</span>
-                        </span>
-                    </div>
+    .hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: 1;
+        opacity: 0.4;
+    }
 
-                    <div class="tp-caption"
-                         data-paddingbottom="[0,0,0,0]"
-                         data-paddingleft="[15,15,15,15]"
-                         data-paddingright="[15,15,15,15]"
-                         data-paddingtop="[0,0,0,0]"
-                         data-responsive_offset="on"
-                         data-type="text"
-                         data-height="none"
-                         data-width="['950','750','750','480']"
-                         data-whitespace="normal"
-                         data-hoffset="['0','0','0','0']"
-                         data-voffset="['-45','-50','-50','-100']"
-                         data-x="['left','left','left','left']"
-                         data-y="['middle','middle','middle','middle']"
-                         data-textalign="['top','top','top','top']"
-                         data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <h1>{{ __('Best solar') }} <br>{{ __('energy System') }}</h1>
-                    </div>
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.3) 0%, rgba(0, 0, 0, 0.7) 100%);
+        z-index: 2;
+    }
 
-                    <div class="tp-caption"
-                         data-paddingbottom="[0,0,0,0]"
-                         data-paddingleft="[15,15,15,15]"
-                         data-paddingright="[0,0,0,0]"
-                         data-paddingtop="[0,0,0,0]"
-                         data-responsive_offset="on"
-                         data-type="text"
-                         data-height="none"
-                         data-width="['750','750','750','450']"
-                         data-whitespace="normal"
-                         data-hoffset="['0','0','0','0']"
-                         data-voffset="['110','90','90','10']"
-                         data-x="['left','left','left','left']"
-                         data-y="['middle','middle','middle','middle']"
-                         data-textalign="['top','top','top','top']"
-                         data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <div class="text">
-                            {{ __('A leading voice in low-income solar policy and the nation\'s largest nonprofit solar installer, serving families throughout world') }}
-                        </div>
-                    </div>
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 900px;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    color: white;
+    animation: fadeInUp 0.8s ease-out;
+    transform: scale(0.8);
+    /* max-width: 2000px; */
+    max-height: 100vh;
+}
 
-                    <div class="tp-caption"
-                         data-paddingbottom="[0,0,0,0]"
-                         data-paddingleft="[15,15,15,15]"
-                         data-paddingright="[15,15,15,15]"
-                         data-paddingtop="[0,0,0,0]"
-                         data-responsive_offset="on"
-                         data-type="text"
-                         data-height="none"
-                         data-width="['700','750','700','450']"
-                         data-whitespace="normal"
-                         data-hoffset="['0','0','0','0']"
-                         data-voffset="['210','185','200','120']"
-                         data-x="['left','left','left','left']"
-                         data-y="['middle','middle','middle','middle']"
-                         data-textalign="['top','top','top','top']"
-                         data-frames='[{"delay":1000,"speed":1500,"frame":"0","from":"y:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'>
-                        <a href="{{ route('services') }}" class="theme-btn btn-style-one" aria-label="{{ __('View Our Services') }}">
-                            <span class="btn-title">
-                                {{ __('Our Services') }}
-                                <i class="icon icon-sm-arrow"></i>
-                            </span>
-                        </a>
-                    </div>
-                </li>
-            </ul>
+    .hero-subtitle {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(40, 167, 69, 0.2);
+        color: #28a745;
+        padding: 10px 20px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        border: 1px solid rgba(40, 167, 69, 0.4);
+    }
+
+    .hero-subtitle i {
+        font-size: 20px;
+    }
+
+    .hero-title {
+        font-size: 68px;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #ffffff 0%, #20c997 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .hero-description {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 40px;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn-primary-hero {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(40, 167, 69, 0.3);
+    }
+
+    .btn-primary-hero:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 30px rgba(40, 167, 69, 0.5);
+        color: white;
+    }
+
+    .btn-secondary-hero {
+        background: transparent;
+        color: white;
+        padding: 15px 40px;
+        border: 2px solid white;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-secondary-hero:hover {
+        background: white;
+        color: #28a745;
+        transform: translateY(-3px);
+    }
+
+    .hero-stats {
+        display: flex;
+        gap: 40px;
+        justify-content: center;
+        margin-top: 60px;
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 48px;
+        font-weight: 800;
+        color: #28a745;
+        display: block;
+    }
+
+    .stat-label {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 5px;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .hero-section {
+            height: 80vh;
+            min-height: 500px;
+        }
+
+        .hero-content {
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: 42px;
+        }
+
+        .hero-description {
+            font-size: 16px;
+        }
+
+        .hero-buttons {
+            flex-direction: column;
+        }
+
+        .btn-primary-hero, .btn-secondary-hero {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .hero-stats {
+            gap: 20px;
+        }
+
+        .stat-number {
+            font-size: 36px;
+        }
+    }
+</style>
+
+<!-- Professional Hero Section -->
+<section class="hero-section">
+    <!-- Background Image (lightweight SVG gradient or external image) -->
+    <div class="hero-background" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1920 1080%22><defs><linearGradient id=%22grad%22 x1=%220%25%22 y1=%220%25%22 x2=%22100%25%22 y2=%22100%25%22><stop offset=%220%25%22 style=%22stop-color:%2328a745%22 /><stop offset=%22100%25%22 style=%22stop-color:%231a1a1a%22 /></linearGradient></defs><rect width=%221920%22 height=%221080%22 fill=%22url(%23grad)%22 /></svg>')"></div>
+
+    <!-- Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Content -->
+    <div class="hero-content">
+        <!-- Subtitle -->
+        <div class="hero-subtitle">
+            <i class="fas fa-sun"></i>
+            <span>{{ __('Sustainable Energy Solutions') }}</span>
         </div>
+
+        <!-- Title -->
+        <h1 class="hero-title">
+            {{ __('Transform Your Energy Future') }}<br>
+            {{ __('With Solar Power') }}
+        </h1>
+
+        <!-- Description -->
+        <p class="hero-description">
+            {{ __('Leading provider of high-quality solar energy solutions for residential and commercial properties. Save money, reduce carbon footprint, and enjoy reliable clean energy.') }}
+        </p>
+
+        <!-- Call-to-Action Buttons -->
+        <div class="hero-buttons">
+            <a href="{{ route('solar-estimator') }}" class="btn-primary-hero">
+                <i class="fas fa-bolt"></i>
+                {{ __('Get Free Estimate') }}
+            </a>
+            <a href="{{ route('services') }}" class="btn-secondary-hero">
+                <i class="fas fa-arrow-right"></i>
+                {{ __('Explore Services') }}
+            </a>
+        </div>
+
+        <!-- Statistics -->
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">{{ __('Projects Completed') }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">25K+</span>
+                <span class="stat-label">{{ __('Happy Customers') }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">10M+</span>
+                <span class="stat-label">{{ __('kWh Generated') }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
     </div>
 </section>
 
