@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Account | Soliur</title>
+    <title>Create Account | Energy solution</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Font -->
@@ -157,7 +157,7 @@
 
 <div class="auth-container">
 
-    <div class="brand">SOLIUR</div>
+    <div class="brand">Energy solution</div>
     <div class="tagline">Clean energy for a brighter future</div>
 
     <div class="card">

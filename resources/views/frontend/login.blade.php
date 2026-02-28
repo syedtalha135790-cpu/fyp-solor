@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login | Soliur</title>
+    <title>Login |  Energy solution</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap 5 CDN -->
@@ -71,7 +71,7 @@
     <div class="row justify-content-center align-items-center vh-100">
         <div class="col-md-4">
 
-            <div class="brand">SOLIUR</div>
+            <div class="brand"> Energy solution</div>
             <div class="tagline">Clean energy for a brighter future</div>
 
             <div class="card shadow">
