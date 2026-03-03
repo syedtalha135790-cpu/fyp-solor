@@ -78,7 +78,13 @@
                 <div class="card-body p-4">
 
                     <h4 class="text-center mb-4">Log in to your account</h4>
-
+ @if ($errors->any())
+            <ul class="error-list">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
                     <form action="{{ route('user.login.post') }}" method="POST">
                         @csrf
 

@@ -74,7 +74,7 @@ class AuthController extends Controller
         }
 
         if (!$user->is_verified) {
-            return back()->with('error', 'Please verify your email first.');
+            return back()->with('error', 'Please verify your email first');
         }
 
         Session::put('user_id', $user->id);
@@ -114,7 +114,7 @@ class AuthController extends Controller
             $user = User::where('email', $decryptedEmail)->first();
 
             if (!$user) {
-                return redirect()->route('user.register')
+                return redirect()->route('user.login')
                     ->with('error', 'Invalid verification link.');
             }
 
@@ -122,11 +122,11 @@ class AuthController extends Controller
             $user->save();
 
             return redirect()->route('user.login')
-                ->with('success', 'Email verified successfully. You can now log in.');
+                ->with('success', 'Email verified successfully! Please login to your account.');
 
         } catch (\Exception $e) {
 
-            return redirect()->route('user.register')
+            return redirect()->route('user.login')
                 ->with('error', 'Invalid or expired verification link.');
         }
     }
